@@ -40,8 +40,3 @@ yarn-debug.log*
 .env
 .idea
 /node_modules
-public/packs-test
-public/packs
-public/packs/manifest.json
-public/assets/
-vendor/cache

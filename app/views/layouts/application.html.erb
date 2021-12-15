@@ -11,6 +11,29 @@
   </head>
 
   <body>
-    <%= yield %>
+    <div class="site-mobile-menu site-navbar-target">
+      <div class="site-mobile-menu-header">
+        <div class="site-mobile-menu-close mt-3">
+          <span class="icon-close2 js-menu-toggle"></span>
+        </div>
+      </div>
+      <div class="site-mobile-menu-body"></div>
+    </div>
+
+    <%= render partial: 'layouts/header' %>
+  
+    <div class="hero">
+      <p class="hero-space"></p>
+
+      <div class="container">
+        <%= yield %>
+      </div>
+      <br />
+      <div class="container">
+        <footer class="footer">
+          <p class="text-white font-weight-bold">&copy; TestApp 2021</p>
+        </footer>
+      </div>
+    </div>
   </body>
 </html>
