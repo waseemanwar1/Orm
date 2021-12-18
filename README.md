@@ -7,9 +7,11 @@ Things you may want to cover:
 
 * Ruby version '3.0.1'
 
-* System dependencies
+* yarn
 
-* Configuration
+* Configuration in database.yml 
+  username: <username>
+  password: <password>
 
 * rails db:create
 
