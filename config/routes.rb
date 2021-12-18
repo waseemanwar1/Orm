@@ -1,4 +1,9 @@
 Rails.application.routes.draw do
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  get '/dashboard/orm', to: 'dashboard#orm', as: 'orm'
+  get '/dashboard/slowdb', to: 'dashboard#slowdb', as: 'slowdb'
+  get '/dashboard/slowrequest', to: 'dashboard#slowrequest', as: 'slowrequest'
+  get '/dashboard/swallowedexception', to: 'dashboard#swallowedexception', as: 'swallowedexception'
+  
+
   root 'dashboard#index'
 end
