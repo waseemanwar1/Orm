@@ -8,34 +8,33 @@ class DashboardController < ApplicationController
   end
 
   def slowdb
-      query  = "SELECT
-      customers.id,
-      customers.first_name,
-      customers.last_name,
-      customers.email_address,
-      customers.mobile_phone,
-      orders.id AS order_id,
-      orders.shipping_fee,
-      orders.taxes
-      FROM customers
-      LEFT JOIN orders ON customers.id = orders.customer_id
-      UNION
-      SELECT
-      customers.id,
-      customers.first_name,
-      customers.last_name,
-      customers.email_address,
-      customers.mobile_phone,
-      orders.id AS order_id,
-      orders.shipping_fee,
-      orders.taxes
-      FROM customers
-      RIGHT JOIN orders ON customers.id = orders.customer_id
-      ORDER BY id;"
-      results = ActiveRecord::Base.connection.execute(query).to_a
-      puts results
-
-      redirect_back(fallback_location: root_path)
+    query  = "SELECT
+              customers.id,
+              customers.first_name,
+              customers.last_name,
+              customers.email_address,
+              customers.mobile_phone,
+              orders.id AS order_id,
+              orders.shipping_fee,
+              orders.taxes
+              FROM customers
+              LEFT JOIN orders ON customers.id = orders.customer_id
+              UNION
+              SELECT
+              customers.id,
+              customers.first_name,
+              customers.last_name,
+              customers.email_address,
+              customers.mobile_phone,
+              orders.id AS order_id,
+              orders.shipping_fee,
+              orders.taxes
+              FROM customers
+              RIGHT JOIN orders ON customers.id = orders.customer_id
+              ORDER BY id;"
+    results = ActiveRecord::Base.connection.execute(query).to_a
+    ActiveRecord::Base.clear_active_connections!
+    puts results
   end
 
 
@@ -53,10 +52,8 @@ class DashboardController < ApplicationController
               LEFT JOIN orders_status
               ON orders.id = orders_status.id
               ORDER BY order_date;"
-      results = ActiveRecord::Base.connection.execute(query).to_a
-      puts results
-
-      redirect_back(fallback_location: root_path)
+    results = ActiveRecord::Base.connection.execute(query).to_a
+    puts results
   end
 
   def swallowedexception
@@ -77,7 +74,5 @@ class DashboardController < ApplicationController
               ORDER BY creation_date;"
     results = ActiveRecord::Base.connection.execute(query).to_a
     puts results
-
-    redirect_back(fallback_location: root_path)
   end
 end
