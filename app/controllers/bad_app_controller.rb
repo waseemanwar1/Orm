@@ -4,13 +4,7 @@ class BadAppController < ApplicationController
   end
 
   def slowdb
-    sql = ""
-    source = File.new("db/stored_procedure.sql", "r")
-    while (line = source.gets)
-      sql << line
-    end
-    source.close
-    ActiveRecord::Base.connection.execute(sql)
+    results = ActiveRecord::Base.connection.execute("call 5sec_proc()")
     ActiveRecord::Base.clear_active_connections!
     puts results
 
@@ -25,6 +19,16 @@ class BadAppController < ApplicationController
   end
 
   def swallowedexception
+    redirect_back(fallback_location: root_path)
+  end
+
+  def untracked
+    results = ActiveRecord::Base.connection.execute("call bad_getsupplierid_proc()")
+    ActiveRecord::Base.clear_active_connections!
+    puts results
+
+    flash[:notice] = "Untracked call successfully executed!"
+    Rails.logger.info("Untracked application call executed succesfully")
     redirect_back(fallback_location: root_path)
   end
 end
