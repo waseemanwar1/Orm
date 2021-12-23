@@ -48,11 +48,13 @@
               >
             </li>
             <li>
-              <a href="/untracked" class="nav-link" name="tab-untracked"
-                >Untracked</a
-              >
+              <form action="<%= badapp_untracked_path %>" method="post">
+                  <a href="javascript:;" onclick="parentNode.submit();">Untracked</a>
+              </form>
             </li>
-            <li>
+            <%
+=begin%>
+ <li>
               <a href="/logout" class="nav-link" name="tab-logout"
                 >Logout</a
               >
@@ -65,7 +67,9 @@
               <a href="/register" class="nav-link" name="tab-register"
                 >Register</a
               >
-            </li>
+            </li> 
+<%
+=end%>
             
           </ul>
         </nav>

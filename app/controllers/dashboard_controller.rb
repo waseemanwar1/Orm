@@ -74,5 +74,6 @@ class DashboardController < ApplicationController
               ORDER BY creation_date;"
     results = ActiveRecord::Base.connection.execute(query).to_a
     puts results
+    
   end
 end

@@ -8,6 +8,7 @@ Rails.application.routes.draw do
   post '/bad_app/slowdb', to: 'bad_app#slowdb', as: 'badapp_slowdb'
   post '/bad_app/slowrequest', to: 'bad_app#slowrequest', as: 'badapp_slowrequest'
   post '/bad_app/swallowedexception', to: 'bad_app#swallowedexception', as: 'badapp_swallowedexception'
+  post '/bad_app/untracked', to: 'bad_app#untracked', as: 'badapp_untracked'
   
   root 'dashboard#index'
 end
