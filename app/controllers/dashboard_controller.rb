@@ -5,6 +5,20 @@ class DashboardController < ApplicationController
   end
 
   def orm
+    sql = "CREATE TABLE customer_privileges ( customer_id int, privilege_id int);"
+    results = ActiveRecord::Base.connection.execute(sql).to_a
+    puts results
+
+    drop_table = "DROP TABLE IF EXISTS customer_privileges;"
+    ActiveRecord::Base.connection.execute(drop_table)
+
+    ActiveRecord::Base.clear_active_connections!
+
+  rescue Exception => e
+    ActiveRecord::Base.connection.execute(sql)
+    puts e
+    Rails.logger.warning("Random SQL query failed")
+    ActiveRecord::Base.clear_active_connections!
   end
 
   def slowdb
@@ -53,6 +67,7 @@ class DashboardController < ApplicationController
               ON orders.id = orders_status.id
               ORDER BY order_date;"
     results = ActiveRecord::Base.connection.execute(query).to_a
+    ActiveRecord::Base.clear_active_connections!
     puts results
   end
 
@@ -73,7 +88,7 @@ class DashboardController < ApplicationController
               ON purchase_order_status.id = purchase_orders.status_id
               ORDER BY creation_date;"
     results = ActiveRecord::Base.connection.execute(query).to_a
+    ActiveRecord::Base.clear_active_connections!
     puts results
-    
   end
 end
