@@ -136,6 +136,16 @@ a:hover {
   text-decoration: none !important;
   position: relative;
 }
+.site-navbar .site-navigation .site-menu > li > form > a {
+  margin-left: 15px;
+  margin-right: 15px;
+  padding: 20px 0px;
+  font-size: 15px;
+  color: rgba(255, 255, 255, 0.7) !important;
+  display: inline-block;
+  text-decoration: none !important;
+  position: relative;
+}
 .site-navbar .site-navigation .site-menu > li > a:before {
   content: "";
   width: 100%;
@@ -154,7 +164,15 @@ a:hover {
 .site-navbar .site-navigation .site-menu > li > a:hover {
   color: #fff !important;
 }
+.site-navbar .site-navigation .site-menu > li > form > a:hover {
+  color: #fff !important;
+}
 .site-navbar .site-navigation .site-menu > li > a:hover:before {
+  -webkit-transform: scale(1);
+  -ms-transform: scale(1);
+  transform: scale(1);
+}
+.site-navbar .site-navigation .site-menu > li > form > a:hover:before {
   -webkit-transform: scale(1);
   -ms-transform: scale(1);
   transform: scale(1);
